@@ -1,14 +1,13 @@
 package eu.pb4.stylednicknames.mixin;
 
 import eu.pb4.placeholders.api.ParserContext;
-import eu.pb4.placeholders.api.Placeholders;
 import eu.pb4.playerdata.api.PlayerDataApi;
 import eu.pb4.stylednicknames.NicknameCache;
 import eu.pb4.stylednicknames.NicknameHolder;
 import eu.pb4.stylednicknames.ParserUtils;
+import eu.pb4.stylednicknames.Permissions;
 import eu.pb4.stylednicknames.config.Config;
 import eu.pb4.stylednicknames.config.ConfigManager;
-import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.minecraft.nbt.NbtByte;
 import net.minecraft.nbt.NbtString;
 import net.minecraft.network.packet.s2c.play.PlayerListS2CPacket;
@@ -116,7 +115,7 @@ public class ServerPlayNetworkHandlerMixin implements NicknameHolder {
 
     @Override
     public boolean styledNicknames$shouldDisplay() {
-        return this.styledNicknames$parsedNicknameRaw != null && (!this.styledNicknames$requirePermission || Permissions.check(this.player, "stylednicknames.use", ConfigManager.getConfig().configData.allowByDefault ? 0 : 3));
+        return this.styledNicknames$parsedNicknameRaw != null && (!this.styledNicknames$requirePermission || Permissions.check(this.player.getCommandSource(), "stylednicknames.use", ConfigManager.getConfig().configData.allowByDefault ? 0 : 3));
     }
 
     @Override

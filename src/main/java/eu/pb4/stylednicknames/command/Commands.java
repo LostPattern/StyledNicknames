@@ -8,13 +8,10 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 import eu.pb4.placeholders.api.ParserContext;
 import eu.pb4.stylednicknames.NicknameHolder;
 import eu.pb4.stylednicknames.ParserUtils;
+import eu.pb4.stylednicknames.Permissions;
 import eu.pb4.stylednicknames.StyledNicknamesMod;
 import eu.pb4.stylednicknames.config.Config;
 import eu.pb4.stylednicknames.config.ConfigManager;
-import me.drex.vanish.api.VanishAPI;
-import me.lucko.fabric.api.permissions.v0.Permissions;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
@@ -22,6 +19,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,11 +29,12 @@ import java.util.stream.Collectors;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
+@EventBusSubscriber
 public class Commands {
-    public static final boolean VANISH = FabricLoader.getInstance().isModLoaded("melius-vanish");
 
-    public static void register() {
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+    @SubscribeEvent
+    public static void register(RegisterCommandsEvent event) {
+        var dispatcher = event.getDispatcher();
             dispatcher.register(
                     literal("styled-nicknames")
                             .requires(Permissions.require("stylednicknames.main", true))
@@ -85,7 +86,6 @@ public class Commands {
                                     .executes(Commands::realname)
                             )
             );
-        });
     }
 
     private static int change(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
@@ -198,9 +198,6 @@ public class Commands {
     }
 
     private static boolean canSeePlayer(ServerPlayerEntity player, ServerCommandSource viewing) {
-        if (VANISH) {
-            return VanishAPI.canSeePlayer(player.server, player.getUuid(), viewing);
-        }
         return true;
     }
 

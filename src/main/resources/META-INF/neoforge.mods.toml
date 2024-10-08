@@ -1,0 +1,23 @@
+modLoader="javafml" #mandatory
+
+loaderVersion="[1,)" #mandatory
+
+license="LGPLv3"
+
+[[mods]] #mandatory
+modId="stylednicknames" #mandatory
+version="${version}" #mandatory
+displayName="Styled Nicknames" #mandatory
+authors="Patbox, LostPattern" #optional
+
+# The description text for the mod (multi line!) (#mandatory)
+description="Simple, but configurable nicknaming mod allowing your server's players (and admins) to change their nickname with full formatting support."
+
+# The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
+[[mixins]]
+config="stylednicknames.mixins.json"
+
+# The [[accessTransformers]] block allows you to declare where your AT file is.
+# If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg
+#[[accessTransformers]]
+#file="META-INF/accesstransformer.cfg"

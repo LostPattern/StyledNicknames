@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import eu.pb4.stylednicknames.StyledNicknamesMod;
 import eu.pb4.stylednicknames.config.data.ConfigData;
 import eu.pb4.stylednicknames.config.data.VersionConfigData;
-import net.fabricmc.loader.api.FabricLoader;
+import net.neoforged.fml.loading.FMLPaths;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -24,7 +24,7 @@ public class ConfigManager {
         CONFIG = null;
         try {
             ConfigData config;
-            File configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), "styled-nicknames.json");
+            File configFile = new File(FMLPaths.CONFIGDIR.get().toFile(), "styled-nicknames.json");
 
 
             if (configFile.exists()) {

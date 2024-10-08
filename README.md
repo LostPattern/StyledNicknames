@@ -1,8 +1,13 @@
+# UNOFFICIAL NEOFORGE PORT
+This is unofficial neoforge port of Styled Nicknames mod by Patbox.
+Do not report any issues to Patbox, their discord or github.
+
+You can find official/fabric version here https://www.curseforge.com/minecraft/mc-mods/styled-nicknames
+
+
 # Styled Nicknames
 It's a configurable mod allowing your server's players (and admins) to change their nickname with 
-full Simplified Text Formatting support. It supports LuckPerms, PlayerRoles or any other 
-fabric permission api compatible mod, with automatic removal of nicknames for players without permissions.
-If you have any questions, you can ask them on my [Discord](https://discord.com/invite/AbqPPppgrd)
+full Simplified Text Formatting support. It supports LuckPerms, PlayerRoles or any other permission api compatible mod, with automatic removal of nicknames for players without permissions.
 
 
 ## Commands (and permissions):

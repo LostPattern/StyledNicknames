@@ -4,6 +4,7 @@
   "package": "eu.pb4.stylednicknames.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "PermissionAPIAccessor",
     "PlayerEntityMixin",
     "PlayerManagerMixin",
     "ServerPlayerEntityMixin",
